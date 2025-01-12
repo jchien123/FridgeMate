@@ -1,8 +1,12 @@
-import { Box, Container, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { EditIcon, ViewIcon } from '@chakra-ui/icons';
+import { Box, Button, Card, CardBody, CardFooter, CardHeader, Container, Divider, Flex, Heading, HStack, SimpleGrid, Text } from '@chakra-ui/react';
+import { useLoaderData } from 'react-router-dom';
 // import { color } from 'framer-motion';
 
 
 export default function Dashboard() {
+
+    const tasks = useLoaderData()
 
   // const boxStyles = {
   //   p: "10px", 
@@ -10,7 +14,7 @@ export default function Dashboard() {
   //   color: "white",
   //   m: "10px",
   //   textAlign: "center",
-  //   filter: "blur(2px)", 
+  //   filter: "blur(2px)",
   //   ':hover' : {
   //     color: "black",
   //     bg: 'blue.200',
@@ -19,23 +23,42 @@ export default function Dashboard() {
 
   return (
 
-    <SimpleGrid columns = {3} spacing = {10} minChildWidth= "250px">
-      <Box bg = "white" h = "200px" border = "1px solid"> 
-        <Text color = {{base: "pink", md: 'blue', lg: 'green'}}> Hello, World! </Text>
-      </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
+    <SimpleGrid spacing = {10} minChildWidth= "300px">
 
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
+      { tasks && tasks.map(task => (
+       <Card key = {task.id} borderTop = "8px" borderColor={"purple.400"} bg = "white">
+          <CardHeader>
+            <Flex>
+              <Box w = "50px" h = "50px">
+                <Text>AV</Text>
+              </Box>
+              <Box>
+                <Heading as = "h3" size = "sm"> {task.title} </Heading>
+                <Text> by {task.author} </Text>
+              </Box>
+            </Flex>
+          </CardHeader>
 
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
-      <Box bg = "white" h = "200px" border = "1px solid"> </Box>
+          <CardBody color = "gray">
+            <Text> {task.description}</Text>
+          </CardBody>
+
+          <Divider borderColor={'gray.200'}/>
+
+          <CardFooter>
+            <HStack>
+              <Button variant = "outline" leftIcon={<ViewIcon />}>
+                Watch
+              </Button>
+
+              <Button variant = "outline" leftIcon = {<EditIcon />}>
+                Comment
+              </Button>
+            </HStack>
+          </CardFooter>
+        </Card>
+      ))}
+
     </SimpleGrid>
 
     // <Container as = "section" maxWidth="md">
@@ -60,4 +83,10 @@ export default function Dashboard() {
     // </Container>
 
   )
+}
+
+export const tasksLoader = async () => {
+  const res = await fetch('http://localhost:3000/tasks');
+
+  return res.json();
 }

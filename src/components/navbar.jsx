@@ -3,8 +3,8 @@ import React from "react";
 
 export default function Navbar() {
     return (
-        <Flex as = "nav" p = "10px" alignItems="center" gap = "10px">
-            <Heading as = "h1"> Current Products </Heading>
+        <Flex as = "nav" p = "10px" mb = "40px" alignItems="center" gap = "10px">
+            <Heading as = "h1"> FridgeMate </Heading>
             <Spacer />
 
             <HStack spacing = "20px">
