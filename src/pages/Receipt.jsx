@@ -47,7 +47,7 @@ const ReceiptPage = () => {
       debugLog('Sending bulk upload request', bulkUploadData);
 
       // Call bulk upload endpoint
-      const response = await fetch('http://localhost:8080/api/food/bulk', {
+      const response = await fetch('https://motionless-karyn-jacobspersonal-0432e84b.koyeb.app/api/food/bulk', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
