@@ -92,7 +92,7 @@ export default function Dashboard() {
         const token = await getToken({ template: 'Test' });
         debugLog('Token retrieved for initial load', { tokenExists: !!token });
         
-        const res = await fetch('https://motionless-karyn-jacobspersonal-0432e84b.koyeb.app//api/food', {
+        const res = await fetch('https://motionless-karyn-jacobspersonal-0432e84b.koyeb.app/api/food', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -202,7 +202,7 @@ export default function Dashboard() {
 
       const token = await getToken({ template: 'Test' });
 
-      const response = await fetch(`https://motionless-karyn-jacobspersonal-0432e84b.koyeb.app//api/food/${itemToDelete.id}`, {
+      const response = await fetch(`https://motionless-karyn-jacobspersonal-0432e84b.koyeb.app/api/food/${itemToDelete.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -259,7 +259,7 @@ export default function Dashboard() {
 
       const token = await getToken({ template: 'Test' });
 
-      const response = await fetch(`http://localhost:8080/api/food/${selectedItem.id}`, {
+      const response = await fetch(`https://motionless-karyn-jacobspersonal-0432e84b.koyeb.app/api/food/${selectedItem.id}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,

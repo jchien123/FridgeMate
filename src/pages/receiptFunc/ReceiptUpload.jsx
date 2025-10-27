@@ -154,7 +154,7 @@ const ReceiptUpload = ({ onItemsExtracted }) => {
         });
       }, 300);
 
-      const response = await fetch('http://localhost:8080/api/receipts/upload', {
+      const response = await fetch('https://motionless-karyn-jacobspersonal-0432e84b.koyeb.app/api/receipts/upload', {
         method: 'POST',
         body: formData,
         headers: {
